@@ -4,6 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -12,6 +15,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @Entity
@@ -35,12 +39,30 @@ public class Product {
     @NotBlank(message = "Product description must not be empty")
     private String description;
 
+    @ManyToOne
+    @JoinColumn
+    private Category category;
+
+    @ManyToOne
+    @JoinColumn
+    private Supplier supplier;
+    
+    @OneToMany
+    private List<InventoryRecord> inventoryRecords;
+
+    @OneToMany
+    private List<OrderItem> orderItems;
+
     public Product(String name, BigDecimal price, String description) {
         this.name = name;
         this.price = price;
         this.description = description;
     }
 
-    public Product() {
+    public Product() {}
+
+    @Override
+    public String toString() {
+        return "Product [id=" + id + ", name=" + name + ", price=" + price + ", description=" + description + "]";
     }
 }
