@@ -1,6 +1,8 @@
 package com.example.productmanagement.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,12 +19,15 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Data
 @Entity
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long id;
 
     @NotNull(message = "Product name must not be null")
@@ -47,7 +52,7 @@ public class Product {
     @JoinColumn
     private Supplier supplier;
     
-    @OneToMany
+    @OneToMany(cascade = CascadeType.REMOVE,mappedBy = "product",fetch = FetchType.EAGER)
     private List<InventoryRecord> inventoryRecords;
 
     @OneToMany

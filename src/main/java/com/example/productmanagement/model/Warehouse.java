@@ -16,6 +16,7 @@ import lombok.Data;
 public class Warehouse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private int id;
     private int capacity;
     private String contactNumber;

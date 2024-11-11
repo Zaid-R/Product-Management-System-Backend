@@ -1,6 +1,7 @@
 package com.example.productmanagement.controller;
 
 import com.example.productmanagement.dto.ProductDTO;
+import com.example.productmanagement.dto.ProductWithInventoryDTO;
 import com.example.productmanagement.mapper.ProductMapper;
 import com.example.productmanagement.model.Product;
 import com.example.productmanagement.service.ProductService;
@@ -31,17 +32,17 @@ public class ProductController {
 
     @Operation(description = "Retrieve a list of all products.", summary = "Get all products", responses = {
             @ApiResponse(description = "Success", responseCode = "200", content = @Content(mediaType = "application/json", examples = {
-                @ExampleObject(value = """
-                            [
-                                {
-                                    "id": 1,
-                                    "name": "Sample Product",
-                                    "price": 99.99,
-                                    "description": "This is a sample product."
-                                }
-                            ]
-                        """)
-        }))
+                    @ExampleObject(value = """
+                                [
+                                    {
+                                        "id": 1,
+                                        "name": "Sample Product",
+                                        "price": 99.99,
+                                        "description": "This is a sample product."
+                                    }
+                                ]
+                            """)
+            }))
     })
     @GetMapping
     public ResponseEntity<List<Product>> getProducts() {
@@ -111,9 +112,27 @@ public class ProductController {
             @ApiResponse(description = "Not Found", responseCode = "404", content = @Content(mediaType = "String", examples = {
                     @ExampleObject(value = "Product with ID 2 not found") }, schema = @Schema(type = "String"))),
     })
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable long id) {
         service.deleteProduct(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/category/{id}")
+    public ResponseEntity<String> getProductCategory(@PathVariable long id) {
+        String category = service.getProductCategory(id);
+        return ResponseEntity.ok(category);
+    }
+
+    @GetMapping("/withInventoryRecords/{id}")
+    public ResponseEntity<ProductWithInventoryDTO> getMethodName(@PathVariable long id) {
+        ProductWithInventoryDTO product = service.getProductWithInventoryRecords(id);
+        return ResponseEntity.ok(product);
+    }
+
+    @GetMapping("/sorted")
+    public ResponseEntity<List<Product>> getSortedProducts(@RequestParam Boolean ascending) {
+        return ResponseEntity.ok(service.getProductsOrdered(ascending));
     }
 }

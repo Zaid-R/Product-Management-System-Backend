@@ -1,14 +1,17 @@
 package com.example.productmanagement.controller;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.productmanagement.dto.SupplierProductCountDTO;
 import com.example.productmanagement.model.Supplier;
 import com.example.productmanagement.service.SupplierService;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/api/suppliers")
@@ -56,4 +59,18 @@ public class SupplierController {
         supplierService.deleteSupplier(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+    @GetMapping("/groupByProduct")
+    public ResponseEntity<List<SupplierProductCountDTO>> getCoundByProduct(){
+        List<SupplierProductCountDTO> result = supplierService.countProductsBySupplier();
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/groupByLessThan3Products")
+    public ResponseEntity<List<SupplierProductCountDTO>> getSuppliersWithLessThan3Products(){
+        List<SupplierProductCountDTO> result = supplierService.findSuppliersWithLessThan3Products();
+        return ResponseEntity.ok(result);
+    }
+
+    
 }

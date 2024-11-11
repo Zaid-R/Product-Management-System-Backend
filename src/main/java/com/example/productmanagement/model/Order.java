@@ -21,6 +21,7 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private int id;
     
     @Digits(integer = 10, fraction = 2)

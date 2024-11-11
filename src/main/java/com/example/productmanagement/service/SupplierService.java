@@ -2,6 +2,7 @@ package com.example.productmanagement.service;
 
 import org.springframework.stereotype.Service;
 
+import com.example.productmanagement.dto.SupplierProductCountDTO;
 import com.example.productmanagement.model.Supplier;
 import com.example.productmanagement.repository.SupplierRepo;
 
@@ -47,5 +48,13 @@ public class SupplierService {
     // Delete supplier
     public void deleteSupplier(int id) {
         supplierRepo.deleteById(id);
+    }
+
+    public List<SupplierProductCountDTO> countProductsBySupplier(){
+        return supplierRepo.countProductsBySupplier();
+    }
+
+    public List<SupplierProductCountDTO> findSuppliersWithLessThan3Products(){
+        return supplierRepo.findSuppliersWithLessThan3Products();
     }
 }
