@@ -34,29 +34,29 @@ public class CategoryController {
         return category.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    // Create or update category
-    @PostMapping
-    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
-        Category savedCategory = categoryService.saveCategory(category);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedCategory);
-    }
+    // // Create or update category
+    // @PostMapping
+    // public ResponseEntity<Category> createCategory(@RequestBody Category category) {
+    //     Category savedCategory = categoryService.saveCategory(category);
+    //     return ResponseEntity.status(HttpStatus.CREATED).body(savedCategory);
+    // }
 
-    // Update category
-    @PutMapping("/{id}")
-    public ResponseEntity<Category> updateCategory(@PathVariable int id, @RequestBody Category category) {
-        Optional<Category> existingCategory = categoryService.getCategoryById(id);
-        if (existingCategory.isPresent()) {
-            category.setId(id);
-            Category updatedCategory = categoryService.saveCategory(category);
-            return ResponseEntity.ok(updatedCategory);
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    }
+    // // Update category
+    // @PutMapping("/{id}")
+    // public ResponseEntity<Category> updateCategory(@PathVariable int id, @RequestBody Category category) {
+    //     Optional<Category> existingCategory = categoryService.getCategoryById(id);
+    //     if (existingCategory.isPresent()) {
+    //         category.setId(id);
+    //         Category updatedCategory = categoryService.saveCategory(category);
+    //         return ResponseEntity.ok(updatedCategory);
+    //     }
+    //     return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    // }
 
-    // Delete category
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCategory(@PathVariable int id) {
-        categoryService.deleteCategory(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    }
+    // // Delete category
+    // @DeleteMapping("/{id}")
+    // public ResponseEntity<Void> deleteCategory(@PathVariable int id) {
+    //     categoryService.deleteCategory(id);
+    //     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    // }
 }

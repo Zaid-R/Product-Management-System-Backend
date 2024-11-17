@@ -35,28 +35,28 @@ public class OrderController {
     }
 
     // Create a new order
-    @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
-        Order savedOrder = orderService.saveOrder(order);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedOrder);
-    }
+    // @PostMapping
+    // public ResponseEntity<Order> createOrder(@RequestBody Order order) {
+    //     Order savedOrder = orderService.saveOrder(order);
+    //     return ResponseEntity.status(HttpStatus.CREATED).body(savedOrder);
+    // }
 
-    // Update an existing order
-    @PutMapping("/{id}")
-    public ResponseEntity<Order> updateOrder(@PathVariable int id, @RequestBody Order order) {
-        Optional<Order> existingOrder = orderService.getOrderById(id);
-        if (existingOrder.isPresent()) {
-            order.setId(id);  // Set the ID of the order to update
-            Order updatedOrder = orderService.saveOrder(order);
-            return ResponseEntity.ok(updatedOrder);
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    }
+    // // Update an existing order
+    // @PutMapping("/{id}")
+    // public ResponseEntity<Order> updateOrder(@PathVariable int id, @RequestBody Order order) {
+    //     Optional<Order> existingOrder = orderService.getOrderById(id);
+    //     if (existingOrder.isPresent()) {
+    //         order.setId(id);  // Set the ID of the order to update
+    //         Order updatedOrder = orderService.saveOrder(order);
+    //         return ResponseEntity.ok(updatedOrder);
+    //     }
+    //     return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    // }
 
-    // Delete an order
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteOrder(@PathVariable int id) {
-        orderService.deleteOrder(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    }
+    // // Delete an order
+    // @DeleteMapping("/{id}")
+    // public ResponseEntity<Void> deleteOrder(@PathVariable int id) {
+    //     orderService.deleteOrder(id);
+    //     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    // }
 }

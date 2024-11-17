@@ -37,30 +37,30 @@ public class OrderItemController {
     }
 
     // Create a new order item
-    @PostMapping
-    public ResponseEntity<OrderItem> createOrderItem(@RequestBody OrderItem orderItem) {
-        OrderItem savedOrderItem = orderItemService.saveOrderItem(orderItem);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedOrderItem);
-    }
+    // @PostMapping
+    // public ResponseEntity<OrderItem> createOrderItem(@RequestBody OrderItem orderItem) {
+    //     OrderItem savedOrderItem = orderItemService.saveOrderItem(orderItem);
+    //     return ResponseEntity.status(HttpStatus.CREATED).body(savedOrderItem);
+    // }
 
-    // Update an existing order item
-    @PutMapping("/{productId}/{orderId}")
-    public ResponseEntity<OrderItem> updateOrderItem(@PathVariable int productId, @PathVariable int orderId, @RequestBody OrderItem orderItem) {
-        OrderItemKey id = new OrderItemKey(productId, orderId);
-        Optional<OrderItem> existingOrderItem = orderItemService.getOrderItemById(id);
-        if (existingOrderItem.isPresent()) {
-            orderItem.setId(id);  // Set the composite ID of the order item
-            OrderItem updatedOrderItem = orderItemService.saveOrderItem(orderItem);
-            return ResponseEntity.ok(updatedOrderItem);
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    }
+    // // Update an existing order item
+    // @PutMapping("/{productId}/{orderId}")
+    // public ResponseEntity<OrderItem> updateOrderItem(@PathVariable int productId, @PathVariable int orderId, @RequestBody OrderItem orderItem) {
+    //     OrderItemKey id = new OrderItemKey(productId, orderId);
+    //     Optional<OrderItem> existingOrderItem = orderItemService.getOrderItemById(id);
+    //     if (existingOrderItem.isPresent()) {
+    //         orderItem.setId(id);  // Set the composite ID of the order item
+    //         OrderItem updatedOrderItem = orderItemService.saveOrderItem(orderItem);
+    //         return ResponseEntity.ok(updatedOrderItem);
+    //     }
+    //     return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    // }
 
-    // Delete an order item
-    @DeleteMapping("/{productId}/{orderId}")
-    public ResponseEntity<Void> deleteOrderItem(@PathVariable int productId, @PathVariable int orderId) {
-        OrderItemKey id = new OrderItemKey(productId, orderId);
-        orderItemService.deleteOrderItem(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    }
+    // // Delete an order item
+    // @DeleteMapping("/{productId}/{orderId}")
+    // public ResponseEntity<Void> deleteOrderItem(@PathVariable int productId, @PathVariable int orderId) {
+    //     OrderItemKey id = new OrderItemKey(productId, orderId);
+    //     orderItemService.deleteOrderItem(id);
+    //     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    // }
 }

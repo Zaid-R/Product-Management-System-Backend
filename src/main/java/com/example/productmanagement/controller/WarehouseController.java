@@ -35,28 +35,28 @@ public class WarehouseController {
     }
 
     // Create a new warehouse
-    @PostMapping
-    public ResponseEntity<Warehouse> createWarehouse(@RequestBody Warehouse warehouse) {
-        Warehouse savedWarehouse = warehouseService.saveWarehouse(warehouse);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedWarehouse);
-    }
+    // @PostMapping
+    // public ResponseEntity<Warehouse> createWarehouse(@RequestBody Warehouse warehouse) {
+    //     Warehouse savedWarehouse = warehouseService.saveWarehouse(warehouse);
+    //     return ResponseEntity.status(HttpStatus.CREATED).body(savedWarehouse);
+    // }
 
-    // Update an existing warehouse
-    @PutMapping("/{id}")
-    public ResponseEntity<Warehouse> updateWarehouse(@PathVariable int id, @RequestBody Warehouse warehouse) {
-        Optional<Warehouse> existingWarehouse = warehouseService.getWarehouseById(id);
-        if (existingWarehouse.isPresent()) {
-            warehouse.setId(id);  // Set the ID of the warehouse to update
-            Warehouse updatedWarehouse = warehouseService.saveWarehouse(warehouse);
-            return ResponseEntity.ok(updatedWarehouse);
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    }
+    // // Update an existing warehouse
+    // @PutMapping("/{id}")
+    // public ResponseEntity<Warehouse> updateWarehouse(@PathVariable int id, @RequestBody Warehouse warehouse) {
+    //     Optional<Warehouse> existingWarehouse = warehouseService.getWarehouseById(id);
+    //     if (existingWarehouse.isPresent()) {
+    //         warehouse.setId(id);  // Set the ID of the warehouse to update
+    //         Warehouse updatedWarehouse = warehouseService.saveWarehouse(warehouse);
+    //         return ResponseEntity.ok(updatedWarehouse);
+    //     }
+    //     return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    // }
 
-    // Delete a warehouse
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteWarehouse(@PathVariable int id) {
-        warehouseService.deleteWarehouse(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    }
+    // // Delete a warehouse
+    // @DeleteMapping("/{id}")
+    // public ResponseEntity<Void> deleteWarehouse(@PathVariable int id) {
+    //     warehouseService.deleteWarehouse(id);
+    //     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    // }
 }

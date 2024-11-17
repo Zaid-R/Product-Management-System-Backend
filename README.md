@@ -1,8 +1,16 @@
 # Product Management System
 This is a RESTful Product Management System designed to manage products with features like listing, retrieving by ID, creating, updating, and deleting products. The system leverages Spring Boot for backend development, with a simple front end to interact with the system using JSF (JavaServer Faces) and PrimeFaces. It supports data validation, exception handling, and clean response handling using a structured API format.
+## ERD
+![](./ERD.PNG)
 
-## Features
+## V2 Features
+* **Named Query** in Supplier Entity **(Inner query with Grop by)**
+* **Embedded composite key** on OrderItem as well on InventoryRecord
+* InventoryRecord is **Join table**
+* **EntityGraph** && **Custom query**  in ProductRepo
+* 
 
+## V1 Features 
 * Retrieve All Products: Fetches a list of all products.
 * Retrieve Product by ID: Gets details of a specific product by ID.
 * Create New Product: Adds a new product with validation.

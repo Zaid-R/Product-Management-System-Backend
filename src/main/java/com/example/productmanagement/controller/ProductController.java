@@ -70,54 +70,54 @@ public class ProductController {
         return ResponseEntity.ok(product);
     }
 
-    @Operation(description = "Create a new product with the provided details.", summary = "Add a new product", responses = {
-            @ApiResponse(description = "Success", responseCode = "201"),
-            @ApiResponse(description = "Not Found", responseCode = "404", content = @Content(mediaType = "String", examples = {
-                    @ExampleObject(value = "Product with ID 2 not found") }, schema = @Schema(type = "String"))),
-            @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content(mediaType = "application/json", examples = {
-                    @ExampleObject(value = """
-                            {
-                                "name": "Product name must not be empty"
-                            }
-                            """) }, schema = @Schema(type = "String"))),
-    })
-    @PostMapping
-    public ResponseEntity<Void> addProduct(@Valid @RequestBody ProductDTO productDTO) {
-        Product product = ProductMapper.INSTANCE.toEntity(productDTO);
-        service.addProduct(product);
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
+    // @Operation(description = "Create a new product with the provided details.", summary = "Add a new product", responses = {
+    //         @ApiResponse(description = "Success", responseCode = "201"),
+    //         @ApiResponse(description = "Not Found", responseCode = "404", content = @Content(mediaType = "String", examples = {
+    //                 @ExampleObject(value = "Product with ID 2 not found") }, schema = @Schema(type = "String"))),
+    //         @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content(mediaType = "application/json", examples = {
+    //                 @ExampleObject(value = """
+    //                         {
+    //                             "name": "Product name must not be empty"
+    //                         }
+    //                         """) }, schema = @Schema(type = "String"))),
+    // })
+    // @PostMapping
+    // public ResponseEntity<Void> addProduct(@Valid @RequestBody ProductDTO productDTO) {
+    //     Product product = ProductMapper.INSTANCE.toEntity(productDTO);
+    //     service.addProduct(product);
+    //     return new ResponseEntity<>(HttpStatus.CREATED);
+    // }
 
-    @Operation(description = "Update an existing product's details by its ID.", summary = "Update product by ID", responses = {
-            @ApiResponse(description = "Success", responseCode = "204"),
-            @ApiResponse(description = "Not Found", responseCode = "404", content = @Content(mediaType = "String", examples = {
-                    @ExampleObject(value = "Product with ID 2 not found") }, schema = @Schema(type = "String"))),
-            @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content(mediaType = "application/json", examples = {
-                    @ExampleObject(value = """
-                            {
-                                "name": "Product name must not be empty"
-                            }
-                            """) }, schema = @Schema(type = "String"))),
-    })
-    @PutMapping("/{id}")
-    public ResponseEntity<Void> updateProduct(@PathVariable long id, @Valid @RequestBody ProductDTO productDTO) {
-        Product product = ProductMapper.INSTANCE.toEntity(productDTO);
-        product.setId(id);
-        service.updateProduct(product);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
+    // @Operation(description = "Update an existing product's details by its ID.", summary = "Update product by ID", responses = {
+    //         @ApiResponse(description = "Success", responseCode = "204"),
+    //         @ApiResponse(description = "Not Found", responseCode = "404", content = @Content(mediaType = "String", examples = {
+    //                 @ExampleObject(value = "Product with ID 2 not found") }, schema = @Schema(type = "String"))),
+    //         @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content(mediaType = "application/json", examples = {
+    //                 @ExampleObject(value = """
+    //                         {
+    //                             "name": "Product name must not be empty"
+    //                         }
+    //                         """) }, schema = @Schema(type = "String"))),
+    // })
+    // @PutMapping("/{id}")
+    // public ResponseEntity<Void> updateProduct(@PathVariable long id, @Valid @RequestBody ProductDTO productDTO) {
+    //     Product product = ProductMapper.INSTANCE.toEntity(productDTO);
+    //     product.setId(id);
+    //     service.updateProduct(product);
+    //     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    // }
 
-    @Operation(description = "Delete a specific product by its ID.", summary = "Delete product by ID", responses = {
-            @ApiResponse(description = "Success", responseCode = "204"),
-            @ApiResponse(description = "Not Found", responseCode = "404", content = @Content(mediaType = "String", examples = {
-                    @ExampleObject(value = "Product with ID 2 not found") }, schema = @Schema(type = "String"))),
-    })
+    // @Operation(description = "Delete a specific product by its ID.", summary = "Delete product by ID", responses = {
+    //         @ApiResponse(description = "Success", responseCode = "204"),
+    //         @ApiResponse(description = "Not Found", responseCode = "404", content = @Content(mediaType = "String", examples = {
+    //                 @ExampleObject(value = "Product with ID 2 not found") }, schema = @Schema(type = "String"))),
+    // })
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable long id) {
-        service.deleteProduct(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
+    // @DeleteMapping("/{id}")
+    // public ResponseEntity<Void> deleteProduct(@PathVariable long id) {
+    //     service.deleteProduct(id);
+    //     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    // }
 
     @GetMapping("/category/{id}")
     public ResponseEntity<String> getProductCategory(@PathVariable long id) {

@@ -36,29 +36,29 @@ public class SupplierController {
         return supplier.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    // Add a new supplier
-    @PostMapping
-    public ResponseEntity<Supplier> addSupplier(@RequestBody Supplier supplier) {
-        supplierService.addSupplier(supplier);
-        return ResponseEntity.status(HttpStatus.CREATED).body(supplier);
-    }
+    // // Add a new supplier
+    // @PostMapping
+    // public ResponseEntity<Supplier> addSupplier(@RequestBody Supplier supplier) {
+    //     supplierService.addSupplier(supplier);
+    //     return ResponseEntity.status(HttpStatus.CREATED).body(supplier);
+    // }
 
-    // Update existing supplier
-    @PutMapping("/{id}")
-    public ResponseEntity<Supplier> updateSupplier(@PathVariable int id, @RequestBody Supplier supplier) {
-        Supplier updatedSupplier = supplierService.updateSupplier(id, supplier);
-        if (updatedSupplier != null) {
-            return ResponseEntity.ok(updatedSupplier);
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    }
+    // // Update existing supplier
+    // @PutMapping("/{id}")
+    // public ResponseEntity<Supplier> updateSupplier(@PathVariable int id, @RequestBody Supplier supplier) {
+    //     Supplier updatedSupplier = supplierService.updateSupplier(id, supplier);
+    //     if (updatedSupplier != null) {
+    //         return ResponseEntity.ok(updatedSupplier);
+    //     }
+    //     return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    // }
 
-    // Delete supplier
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteSupplier(@PathVariable int id) {
-        supplierService.deleteSupplier(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    }
+    // // Delete supplier
+    // @DeleteMapping("/{id}")
+    // public ResponseEntity<Void> deleteSupplier(@PathVariable int id) {
+    //     supplierService.deleteSupplier(id);
+    //     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    // }
 
     @GetMapping("/groupByProduct")
     public ResponseEntity<List<SupplierProductCountDTO>> getCoundByProduct(){

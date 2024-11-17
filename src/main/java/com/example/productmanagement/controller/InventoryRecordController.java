@@ -37,30 +37,30 @@ public class InventoryRecordController {
     }
 
     // Create a new inventory record
-    @PostMapping
-    public ResponseEntity<InventoryRecord> createInventoryRecord(@RequestBody InventoryRecord inventoryRecord) {
-        InventoryRecord savedInventoryRecord = inventoryRecordService.saveInventoryRecord(inventoryRecord);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedInventoryRecord);
-    }
+    // @PostMapping
+    // public ResponseEntity<InventoryRecord> createInventoryRecord(@RequestBody InventoryRecord inventoryRecord) {
+    //     InventoryRecord savedInventoryRecord = inventoryRecordService.saveInventoryRecord(inventoryRecord);
+    //     return ResponseEntity.status(HttpStatus.CREATED).body(savedInventoryRecord);
+    // }
 
-    // Update an existing inventory record
-    @PutMapping("/{productId}/{warehouseId}")
-    public ResponseEntity<InventoryRecord> updateInventoryRecord(@PathVariable int productId, @PathVariable int warehouseId, @RequestBody InventoryRecord inventoryRecord) {
-        InventoryRecordKey id = new InventoryRecordKey(productId, warehouseId);
-        Optional<InventoryRecord> existingInventoryRecord = inventoryRecordService.getInventoryRecordById(id);
-        if (existingInventoryRecord.isPresent()) {
-            inventoryRecord.setId(id);  // Set the composite ID of the inventory record
-            InventoryRecord updatedInventoryRecord = inventoryRecordService.saveInventoryRecord(inventoryRecord);
-            return ResponseEntity.ok(updatedInventoryRecord);
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    }
+    // // Update an existing inventory record
+    // @PutMapping("/{productId}/{warehouseId}")
+    // public ResponseEntity<InventoryRecord> updateInventoryRecord(@PathVariable int productId, @PathVariable int warehouseId, @RequestBody InventoryRecord inventoryRecord) {
+    //     InventoryRecordKey id = new InventoryRecordKey(productId, warehouseId);
+    //     Optional<InventoryRecord> existingInventoryRecord = inventoryRecordService.getInventoryRecordById(id);
+    //     if (existingInventoryRecord.isPresent()) {
+    //         inventoryRecord.setId(id);  // Set the composite ID of the inventory record
+    //         InventoryRecord updatedInventoryRecord = inventoryRecordService.saveInventoryRecord(inventoryRecord);
+    //         return ResponseEntity.ok(updatedInventoryRecord);
+    //     }
+    //     return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    // }
 
-    // Delete an inventory record
-    @DeleteMapping("/{productId}/{warehouseId}")
-    public ResponseEntity<Void> deleteInventoryRecord(@PathVariable int productId, @PathVariable int warehouseId) {
-        InventoryRecordKey id = new InventoryRecordKey(productId, warehouseId);
-        inventoryRecordService.deleteInventoryRecord(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    }
+    // // Delete an inventory record
+    // @DeleteMapping("/{productId}/{warehouseId}")
+    // public ResponseEntity<Void> deleteInventoryRecord(@PathVariable int productId, @PathVariable int warehouseId) {
+    //     InventoryRecordKey id = new InventoryRecordKey(productId, warehouseId);
+    //     inventoryRecordService.deleteInventoryRecord(id);
+    //     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    // }
 }
